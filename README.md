@@ -1,7 +1,7 @@
 # React and Angular2 Comparison Talk for FCIP
 
 These are the notes for a presentation given by Chris Alexander
-([@alexanderc](https://github.com/alexanderc)) and Matt Kunze
+([@alexandec](https://github.com/alexandec)) and Matt Kunze
 ([@MattKunze](https://github.com/MattKunze)) for the
 Fort Collins Internet Professionals
 
