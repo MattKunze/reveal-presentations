@@ -1,8 +1,15 @@
-## React Intro
+<img src="http://react-etc.net/files/2016-07/logo-578x270.png" class="plain">
+
+A JavaScript library for building user interfaces
+
+* Declarative
+* Component-based
+* Learn Once, Write Anywhere
+* http://reactjs.org
 
 ---
 
-## Angular Intro
+<img src="https://cdn.worldvectorlogo.com/logos/angular-3.svg" class="plain">
 
 * Component-based web application framework
 * Includes everything most apps require (routing, HTTP, testing, etc)
@@ -52,12 +59,23 @@
 ## React CLI
 
 Many starter kits and templates, `create-react-app` is probably the easiest
-to get started:
+to get started.
+
+* Project is a *dependency* and not a *template* to clone
+* Includes: Yarn, Webpack, Babel, ESLint, Jest, and more
+
+---
+
+## create-react-app
 
 ```
 npm i -g create-react-app
 create-react-app new-app
+cd new-app
+yarn start
 ```
+
+* Opens http://localhost:3000 with hot-reloading
 
 ---
 
@@ -72,7 +90,7 @@ create-react-app new-app
   ```
 
 - Visit localhost:4200. Reloads on change
-- `ng generate`: scaffolding for components, pipes, services, etc. 
+- `ng generate`: scaffolding for components, pipes, services, etc.
 - `ng build` (webpack), `ng test` (jasmine/karma), `ng e2e` (protractor),
 `ng lint`, `ng eject`
 
@@ -91,7 +109,9 @@ class SimpleComponent extends React.Component {
   render() {
     return (
       <div className="simple-component">
-        <a href='#' onClick={this.props.onClick}>Click {this.props.title}</a>
+        <a href='#' onClick={this.props.onClick}>
+          Click {this.props.title}
+        </a>
       </div>
     )
   }
@@ -146,10 +166,45 @@ like HTML.
   conditionals, assignment, etc
 
 ```js
+function NumberList(props) {
+  const numbers = props.numbers;
+  const listItems = numbers.map((number) =>
+    <li>{number}</li>
+  )
+  return (
+    <ul>{listItems}</ul>
+  )
+}
+```
+
+---
+
+JSX compiles to JavaScript so you don't have to use it if you don't want:
+
+```js
 const SimpleComponent = ({ title, onClick }) = {
   return (
-    React.createElement( 'div', { className: "simple-component" },
-      React.createElement( 'a', { href: '#', onClick: onClick },
+    React.createElement( 'div',
+      { className: "simple-component" },
+      React.createElement( 'a',
+        { href: '#', onClick: onClick },
+        'Title: ' + title
+      )
+    )
+  )
+}
+```
+
+---
+
+or use helper functions for built-in elements:
+
+```js
+const { div, a } = React.DOM
+const SimpleComponent = ({ title, onClick }) = {
+  return (
+    div( { className: "simple-component" },
+      a( { href: '#', onClick: onClick },
         'Title: ' + title
       )
     )
@@ -174,18 +229,26 @@ for two-way binding, and `{{}}` for data binding.
 
 ---
 
-## Component State
+## Component Composition
 
-Components have information passed from parents (`props`) and optionally
-local information managed by the component (`state`)
+* Custom components work the same as built in elements for rendering
+* Parent component passes props to children
+* Communication is through callbacks
 
-* `props` and `state` are just POJOS and you can manage the data however you
-  want (plain JS, immutable, whatever)
-* Ideally most components are stateless
-
----
-
-## Communication Between Components
+```js
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>
+}
+function App() {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  )
+}
+```
 
 ---
 
@@ -225,6 +288,73 @@ local information managed by the component (`state`)
   }
   ```
 * EventEmitter is basically an RxJS observable
+
+---
+
+## Component State
+
+Components have information passed from parents (`props`) and optionally
+local information managed by the component (`state`)
+
+* `props` and `state` are just POJOs and you can manage the data however you
+  want (plain JS, immutable, whatever)
+* Ideally most components are stateless
+
+---
+
+```js
+const increment = (state) => {
+  return { count: state.count + 1 }
+}
+class Counter extends React.Component {
+  getInitialState() { return { count: 0 }}
+  render() {
+    return (
+      <div>
+        <span>{this.props.label} counter:</span>
+        <a href="#" onClick={increment}>{this.state.count}</a>
+      </div>
+    )
+  }
+}
+```
+```js
+import Counter from './counter'
+ReactDOM.render(
+  <Counter label="Example" />,
+  document.querySelector('#root')
+)
+```
+
+---
+
+## Lifecycle Events
+
+Components have lifecycle events to add logic as changes are applied to the DOM
+
+* Not purely *reactive* or *functional*, but serve as useful escape hatches
+* Handle async state
+* Wrap non-React components
+
+---
+
+```js
+class Modal extends React.Component {
+  componentDidMount() {
+    this._input.focus()
+  }
+  render() {
+    return (
+      <div className="modal">
+        <input
+          type="text"
+          ref={(input) => { this._input = input }} />
+        <button onClick={this.props.onSubmit} />
+      </div>
+    )
+  }
+}
+```
 
 ---
 
@@ -308,7 +438,7 @@ local information managed by the component (`state`)
 
 ---
 
-## ReactNative
+## React Native
 
 ReactNative offers a similar programming environment, but you end up with a
 'Native' app (ie: not a webview running DOM nodes)
@@ -316,6 +446,28 @@ ReactNative offers a similar programming environment, but you end up with a
 * Better performance, especially with animations and transitions
 * Backend runs JavaScript so you don't need Swift/Java/Objective-C
 * Separate UI components for iOS and Android
+
+---
+
+### https://facebook.github.io/react-native/
+
+```js
+import React, { Component } from 'react'
+import { Text, View } from 'react-native'
+
+class WhyReactNativeIsSoGreat extends Component {
+  render() {
+    return (
+      <View>
+        <Text>
+          You just use native components like 'View' and 'Text',
+          instead of web components like 'div' and 'span'.
+        </Text>
+      </View>
+    )
+  }
+}
+```
 
 ---
 
