@@ -72,8 +72,9 @@ create-react-app new-app
   ```
 
 - Visit localhost:4200. Reloads on change
-- `ng generate`: scaffolding for components, pipes, services, etc
-- Other commands: `ng build` (webpack), `ng test` (jasmine/karma), `ng e2e` (protractor), `ng lint`, `ng build`, `ng eject`
+- `ng generate`: scaffolding for components, pipes, services, etc. 
+- `ng build` (webpack), `ng test` (jasmine/karma), `ng e2e` (protractor),
+`ng lint`, `ng eject`
 
 ---
 
@@ -126,7 +127,7 @@ const SimpleComponent = ({ title, onClick }) = {
     template: '<h1>{{title}}</h1>',
     styles: ['h1 { font-size: 3rem; }']
   })
-  export class AppComponent {
+  export class ShowTitleComponent {
     title: string = 'This is a string.';
   }
   ```
@@ -167,7 +168,8 @@ const SimpleComponent = ({ title, onClick }) = {
       (click)="itemClick(item)">Name: {{item.name}}</li>
   </ul>
   ```
-- `*` for UI changes, `()` for event binding, `[]` for property binding, `([])` for two-way binding, and `{{}}` for data binding.
+- `*` for UI changes, `()` for event binding, `[]` for property binding, `[()]`
+for two-way binding, and `{{}}` for data binding.
 - Look is familiar to most devs and designers
 
 ---
@@ -243,7 +245,7 @@ local information managed by the component (`state`)
 ---
 
 ## Types with TypeScript
-- Adds strong typing to JS. Can gradually + add types
+- Adds strong typing to JS. Can gradually add types
 - Examples:
 
   ```ts
@@ -266,16 +268,16 @@ local information managed by the component (`state`)
 ---
 
 ## Observables
-- Promises solve callback hell. Observables solve it for streams
-- RxJS provides rich set of FP helpers. Like Underscore for streams
-- Angular's router and HTTP services use RxJS observables
-- Subscribe + transform data stream (map, filter, merge, scan...)
+- Callbacks -> Promises -> Observables (streams)
+- RxJS: rich set of FP helpers (Underscore for streams)
+- Angular's router, HTTP services use observables
+- Subscribe + transform stream (map, filter, scan...)
   ```js
   const testSubject = new Rx.Subject();
   const basicScan = testSubject
     .startWith(0)
     .scan((acc, curr) => acc + curr);
-  const subscribe = basicScan.subscribe(val => console.log('Accumulated total:', val));
+  const subscribe = basicScan.subscribe(val => console.log(val));
   testSubject.next(1); //1
   testSubject.next(2); //3
   testSubject.next(3); //6
