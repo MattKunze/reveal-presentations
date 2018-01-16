@@ -1,19 +1,14 @@
-# React and Angular2 Comparison Talk for FCIP
+# Slides for Various Talks and Presentations
 
-These are the notes for a presentation given by Chris Alexander
-([@alexandec](https://github.com/alexandec)) and Matt Kunze
-([@MattKunze](https://github.com/MattKunze)) for the
-Fort Collins Internet Professionals
-
-The slide deck uses [reveal.js](http://lab.hakim.se/reveal-js/#/). To run
+These slide decks use [reveal.js](http://lab.hakim.se/reveal-js/#/). To run
 locally you need to serve up the content with a local http server, so
 something like the following should work:
 
 ```sh
-$ git clone https://github.com/MattKunze/react-angular-fcip
-$ cd react-angular-fcip
+$ git clone https://github.com/MattKunze/presentation-slides
+$ cd presentation-slides
 $ npm install
-$ http-server .
+$ http-serve .
 Starting up http-server, serving .
 Available on:
   http://127.0.0.1:8080
@@ -22,3 +17,10 @@ Available on:
   http://10.37.129.2:8080
 Hit CTRL-C to stop the server
 ```
+
+## React and Angular2 Comparison Talk for FCIP
+
+These are the notes for a presentation given by Chris Alexander
+([@alexandec](https://github.com/alexandec)) and Matt Kunze
+([@MattKunze](https://github.com/MattKunze)) for the
+Fort Collins Internet Professionals
