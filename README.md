@@ -5,8 +5,8 @@ locally you need to serve up the content with a local http server, so
 something like the following should work:
 
 ```sh
-$ git clone https://github.com/MattKunze/presentation-slides
-$ cd presentation-slides
+$ git clone https://github.com/MattKunze/reveal-presentations
+$ cd reveal-presentations
 $ npm install
 $ http-serve .
 Starting up http-server, serving .
