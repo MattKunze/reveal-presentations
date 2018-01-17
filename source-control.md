@@ -31,11 +31,19 @@ Using git for source control to improve development workflow and working in team
 
 ---
 
-## Git Concepts - Working Copy
+## Git Concepts - Workspace
 
 * Local copy of a repository
 * `git clone` to create a copy of an existing repository
 * `git init` to initialize a new local repository
+
+---
+
+## Git Concepts - Workspace
+
+* Workspace is your local, private copy to make changes
+* Remote repository is the public record
+* You choose to what extent these are in sync (push/pull)
 
 ---
 
@@ -50,7 +58,13 @@ Using git for source control to improve development workflow and working in team
 ## Git Concepts - Commit
 
 * Set of changes, plus details about the commit (who, what, when)
-* Unique _SHA_ reference - typically 7 digit number
+* Unique _SHA_ reference
+
+---
+
+## Command Cheatsheet
+
+* http://ndpsoftware.com/git-cheatsheet.html#loc=workspace;
 
 ---
 
@@ -60,6 +74,8 @@ Using git for source control to improve development workflow and working in team
 * Do some work
 * Create a _pull request_ for review
 * Merge PR to accept changes
+
+---
 
 ## Feature PR - Create a branch
 
@@ -103,7 +119,7 @@ related issues, links to further information, etc
 
 ## Feature PR - Code Review
 
-* Sync changes to working copy: `git fetch origin`
+* Sync changes to workspace: `git fetch origin`
 * Checkout branch: `git checkout <branch>`
 
 ---
@@ -133,6 +149,8 @@ related issues, links to further information, etc
 
 ## Reconciling Multiple Branches
 
+![tweet](https://user-images.githubusercontent.com/421270/35014006-6e22c454-facc-11e7-8df6-180f775dfd0f.png)
+
 * Merge - doesn't change history, produces combined output
 * Rebase - move changes forward in time
 * Squash - cleanup set of commits to have cleaner history
@@ -158,6 +176,14 @@ related issues, links to further information, etc
 
 ---
 
+## Random Tidbits - Amending Commits
+
+* `git commit --amend`
+  * With additional staged changes to add/remove from changeset
+  * Without staged changes to update commit message
+
+---
+
 ## Random Tidbits - Blame
 
 * Shows commit that introduced each line in a file
@@ -168,8 +194,8 @@ related issues, links to further information, etc
 ## Random Tidbits - Bisect
 
 * Track down when a bug was introduced
-* Provide a SHA before but was introduced, and one after
-* Binary search to narrow down to indivual commit
+* Provide a SHA before bug was introduced, and one after
+* Binary search to narrow down to individual commit
 
 ---
 
